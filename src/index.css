@@ -1,0 +1,975 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary-50: #fffbeb;
+  --primary-100: #fef3c7;
+  --primary-200: #fde68a;
+  --primary-300: #fcd34d;
+  --primary-400: #fbbf24;
+  --primary-500: #f59e0b;
+  --primary-600: #d97706;
+  --primary-700: #b45309;
+  --primary-800: #92400e;
+  --primary-900: #78350f;
+}
+
+/* Base styles */
+body {
+  @apply bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white min-h-screen;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+/* Layout */
+.page-container {
+  @apply py-6 px-4 sm:px-6 lg:px-8 min-h-[calc(100vh-4rem)];
+}
+
+/* Typography */
+.page-title {
+  @apply text-2xl font-bold text-gray-900 dark:text-white;
+}
+
+.section-title {
+  @apply text-xl font-semibold text-gray-800 dark:text-white mb-4;
+}
+
+/* Cards */
+.card {
+  @apply bg-white dark:bg-gray-800 rounded-xl shadow-sm p-4 transition-all;
+}
+
+/* Buttons */
+.btn-primary {
+  @apply inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-gray-900 dark:text-white bg-primary-500 hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 transition-colors;
+}
+
+.btn-secondary {
+  @apply inline-flex items-center justify-center px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm text-sm font-medium text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 transition-colors;
+}
+
+.btn-danger {
+  @apply inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-colors;
+}
+
+.btn-success {
+  @apply inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-colors;
+}
+
+/* Global input styles */
+.form-input,
+.form-textarea,
+.form-select,
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="password"],
+input[type="tel"],
+input[type="url"],
+input[type="search"],
+input[type="date"],
+input[type="time"],
+input[type="datetime-local"],
+textarea,
+select {
+  @apply w-full rounded-lg px-4 py-2.5
+    bg-white dark:bg-gray-800 
+    text-gray-900 dark:text-gray-100
+    border border-gray-300 dark:border-gray-600
+    placeholder-gray-500 dark:placeholder-gray-400
+    focus:ring-2 focus:ring-primary-500 focus:border-primary-500 
+    dark:focus:ring-primary-400 dark:focus:border-primary-400
+    outline-none transition-all duration-200;
+}
+
+/* Consistent hover state for all input fields */
+.form-input:hover,
+.form-textarea:hover,
+.form-select:hover,
+input:hover,
+textarea:hover,
+select:hover {
+  @apply border-gray-400 dark:border-gray-500;
+}
+
+/* Consistent focus state for all input fields */
+.form-input:focus,
+.form-textarea:focus,
+.form-select:focus,
+input:focus,
+textarea:focus,
+select:focus {
+  @apply border-primary-500 dark:border-primary-400
+    ring-2 ring-primary-500 ring-opacity-50 dark:ring-primary-400 dark:ring-opacity-50;
+}
+
+/* Consistent disabled state for all input fields */
+.form-input:disabled,
+.form-textarea:disabled,
+.form-select:disabled,
+input:disabled,
+textarea:disabled,
+select:disabled {
+  @apply bg-gray-100 dark:bg-gray-700 
+    text-gray-500 dark:text-gray-400
+    border-gray-200 dark:border-gray-700
+    cursor-not-allowed;
+}
+
+/* Fix for input fields that might be missing the proper classes */
+input, textarea, select {
+  @apply dark:bg-gray-800 dark:text-gray-100;
+}
+
+/* Final fix for icon positioning and responsiveness */
+.input-with-icon {
+  @apply relative overflow-hidden;
+  border-radius: 0.5rem; /* 8px - match the input field */
+}
+
+.input-with-icon input,
+.input-with-icon textarea,
+.input-with-icon select {
+  @apply pl-14; /* Increased left padding */
+  text-indent: 0; /* Prevent text from being indented too far */
+}
+
+/* Ensure the icon background doesn't overflow */
+.input-with-icon::before {
+  content: "";
+  @apply absolute left-0 top-0 bottom-0 w-12 bg-gray-50 dark:bg-gray-700 border-r border-gray-200 dark:border-gray-600;
+  border-top-left-radius: 0.5rem; /* 8px */
+  border-bottom-left-radius: 0.5rem; /* 8px */
+  z-index: 0;
+}
+
+/* Fix icon positioning to prevent overflow */
+.input-with-icon .icon {
+  @apply absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none;
+  z-index: 1;
+  width: 1.25rem; /* 20px */
+  height: 1.25rem; /* 20px */
+}
+
+/* Override any conflicting styles */
+.input-with-icon .form-input,
+.input-with-icon .form-textarea,
+.input-with-icon .form-select {
+  @apply pl-14 !important; /* Force left padding */
+}
+
+/* For textarea, position the icon at the top */
+.input-with-icon.textarea-container .icon {
+  @apply absolute left-4 top-3 transform-none text-gray-400 pointer-events-none;
+  z-index: 1;
+  width: 1.25rem; /* 20px */
+  height: 1.25rem; /* 20px */
+}
+
+/* Ensure textarea has proper padding */
+.input-with-icon.textarea-container textarea {
+  @apply pl-14 pt-3;
+  min-height: 80px; /* Ensure enough height for the textarea */
+}
+
+/* Fix the background for textarea containers */
+.input-with-icon.textarea-container::before {
+  content: "";
+  @apply absolute left-0 top-0 bottom-0 w-12 bg-gray-50 dark:bg-gray-700 border-r border-gray-200 dark:border-gray-600;
+  border-top-left-radius: 0.5rem; /* 8px */
+  border-bottom-left-radius: 0.5rem; /* 8px */
+  z-index: 0;
+  height: 100%; /* Ensure it covers the full height */
+}
+
+/* Ensure icons are properly sized */
+.icon {
+  @apply flex-shrink-0;
+  width: 1.25rem; /* 20px */
+  height: 1.25rem; /* 20px */
+}
+
+/* Fix for button icons */
+button svg,
+.btn-primary svg,
+.btn-secondary svg,
+.btn-danger svg,
+.btn-success svg {
+  @apply flex-shrink-0;
+  max-width: 1rem;
+  max-height: 1rem;
+}
+
+/* Fix for any remaining icon containers */
+.icon-container {
+  @apply flex items-center justify-center;
+  width: 1.5rem;
+  height: 1.5rem;
+  overflow: visible;
+}
+
+/* Ensure all SVG icons are properly contained */
+svg {
+  @apply flex-shrink-0;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+/* Login form specific styles */
+.login-form .form-input {
+  @apply border border-gray-300 dark:border-gray-600 
+    bg-white dark:bg-gray-800
+    text-gray-900 dark:text-white
+    rounded-lg px-4 py-2.5
+    focus:ring-2 focus:ring-primary-500 focus:border-primary-500;
+}
+
+.login-form .input-with-icon .form-input {
+  @apply pl-14 !important; /* Force left padding */
+}
+
+/* Status badges */
+.badge {
+  @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+}
+
+.badge-pending {
+  @apply badge bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:bg-opacity-30 dark:text-yellow-300;
+}
+
+.badge-accepted {
+  @apply badge bg-green-100 text-green-800 dark:bg-green-900 dark:bg-opacity-30 dark:text-green-300;
+}
+
+.badge-completed {
+  @apply badge bg-blue-100 text-blue-800 dark:bg-blue-900 dark:bg-opacity-30 dark:text-blue-300;
+}
+
+/* Dropdown items */
+.dropdown-item {
+  @apply flex items-center w-full px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes bounceSlow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.5s ease-out forwards;
+}
+
+.animate-bounce-slow {
+  animation: bounceSlow 3s infinite;
+}
+
+/* RTL Support */
+html[dir="rtl"] body {
+  font-family: 'Tajawal', 'Inter', sans-serif;
+}
+
+html[dir="rtl"] .input-with-icon input,
+html[dir="rtl"] .input-with-icon textarea,
+html[dir="rtl"] .input-with-icon select,
+html[dir="rtl"] .location-input-field input,
+html[dir="rtl"] .notes-input-field textarea {
+  @apply pl-4 pr-12;
+  text-align: right;
+}
+
+html[dir="rtl"] .input-with-icon::before,
+html[dir="rtl"] .location-icon-container,
+html[dir="rtl"] .notes-icon-container {
+  @apply right-0 left-auto;
+  border-radius: 0;
+  border-top-right-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+  border-right: none;
+  border-left: 1px solid;
+  @apply border-gray-200 dark:border-gray-600;
+}
+
+html[dir="rtl"] .input-with-icon .icon,
+html[dir="rtl"] .location-icon,
+html[dir="rtl"] .notes-icon {
+  @apply right-4 left-auto;
+}
+
+html[dir="rtl"] .form-group label {
+  text-align: right;
+}
+
+html[dir="rtl"] .btn-primary svg,
+html[dir="rtl"] .btn-secondary svg,
+html[dir="rtl"] .btn-danger svg,
+html[dir="rtl"] .btn-success svg,
+html[dir="rtl"] button svg {
+  margin-right: 0;
+  margin-left: 0.25rem;
+}
+
+/* Add Tajawal font for Arabic */
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap');
+
+/* Language switcher styles */
+.language-switcher {
+  @apply flex items-center space-x-2 text-sm;
+}
+
+html[dir="rtl"] .language-switcher {
+  @apply space-x-0 space-x-reverse;
+}
+
+.language-switcher button {
+  @apply px-2 py-1 rounded-md transition-colors;
+}
+
+.language-switcher button.active {
+  @apply bg-primary-500 text-white;
+}
+
+@layer components {
+  .card {
+    @apply bg-white dark:bg-gray-800 rounded-xl shadow-soft p-6 transition-all duration-300 hover:shadow-hover dark:text-white;
+  }
+  
+  .btn {
+    @apply px-6 py-2 rounded-full font-medium transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 active:scale-95 flex items-center justify-center;
+  }
+  
+  .btn-primary {
+    @apply btn bg-primary-500 text-gray-800 hover:bg-primary-600 focus:ring-primary-500;
+  }
+  
+  .btn-secondary {
+    @apply btn bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white hover:bg-gray-300 dark:hover:bg-gray-600 focus:ring-gray-400;
+  }
+  
+  .btn-danger {
+    @apply btn bg-red-500 text-white hover:bg-red-600 focus:ring-red-500;
+  }
+  
+  .input {
+    @apply w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500;
+  }
+  
+  .label {
+    @apply block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1;
+  }
+  
+  .page-container {
+    @apply min-h-screen bg-gray-100 dark:bg-gray-900 p-4 transition-colors duration-200;
+  }
+  
+  .page-title {
+    @apply text-2xl md:text-3xl font-bold text-gray-800 dark:text-white mb-6;
+  }
+  
+  .section-title {
+    @apply text-xl font-semibold text-gray-800 dark:text-white mb-4;
+  }
+  
+  .badge {
+    @apply px-3 py-1 rounded-full text-xs font-medium;
+  }
+  
+  .badge-pending {
+    @apply badge bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200;
+  }
+  
+  .badge-accepted {
+    @apply badge bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200;
+  }
+  
+  .badge-completed {
+    @apply badge bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200;
+  }
+  
+  .dropdown-menu {
+    @apply absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-md shadow-lg py-1 z-10;
+    max-width: calc(100vw - 20px);
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+  
+  .dropdown-item {
+    @apply flex items-center px-4 py-3 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-150;
+  }
+  
+  .back-button {
+    @apply flex items-center text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors duration-200 mb-4;
+  }
+  
+  /* Responsive container for small screens */
+  .mobile-container {
+    @apply px-3 py-4 sm:px-4 sm:py-6;
+  }
+  
+  /* Responsive buttons for mobile */
+  .btn-mobile {
+    @apply w-full sm:w-auto justify-center;
+  }
+  
+  /* Responsive card grid */
+  .responsive-grid {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4;
+  }
+  
+  /* Responsive text sizes */
+  .mobile-text-sm {
+    @apply text-xs sm:text-sm;
+  }
+  
+  .mobile-text-base {
+    @apply text-sm sm:text-base;
+  }
+  
+  .mobile-text-lg {
+    @apply text-base sm:text-lg;
+  }
+  
+  .mobile-text-xl {
+    @apply text-lg sm:text-xl;
+  }
+  
+  /* Responsive padding/margin */
+  .mobile-p {
+    @apply p-3 sm:p-4;
+  }
+  
+  .mobile-py {
+    @apply py-3 sm:py-4;
+  }
+  
+  .mobile-px {
+    @apply px-3 sm:px-4;
+  }
+  
+  .mobile-m {
+    @apply m-2 sm:m-4;
+  }
+}
+
+@keyframes highlight-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7); }
+  70% { box-shadow: 0 0 0 10px rgba(59, 130, 246, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+}
+
+.highlight-card {
+  animation: highlight-pulse 2s 1;
+}
+
+.notification-dot {
+  @apply absolute -top-1 -right-1 bg-red-500 text-white rounded-full flex items-center justify-center;
+  width: 16px;
+  height: 16px;
+  font-size: 10px;
+  line-height: 1;
+}
+
+.chat-badge {
+  @apply ml-1.5 bg-green-500 text-white rounded-full px-1.5 py-0.5 text-xs font-bold inline-flex items-center justify-center;
+  min-width: 18px;
+  min-height: 18px;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(22, 163, 74, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 6px rgba(22, 163, 74, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(22, 163, 74, 0);
+  }
+}
+
+@keyframes shake {
+  0% { transform: rotate(0deg); }
+  10% { transform: rotate(-10deg); }
+  20% { transform: rotate(10deg); }
+  30% { transform: rotate(-10deg); }
+  40% { transform: rotate(10deg); }
+  50% { transform: rotate(-10deg); }
+  60% { transform: rotate(10deg); }
+  70% { transform: rotate(-10deg); }
+  80% { transform: rotate(10deg); }
+  90% { transform: rotate(-10deg); }
+  100% { transform: rotate(0deg); }
+}
+
+.animate-shake {
+  animation: shake 0.5s ease-in-out;
+}
+
+/* Update these styles to fix input field icons */
+.input-with-icon {
+  @apply relative;
+}
+
+.input-with-icon input,
+.input-with-icon textarea,
+.input-with-icon select {
+  @apply pl-12; /* Increase left padding to make more room for the icon */
+}
+
+.input-with-icon .icon {
+  @apply absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none;
+  z-index: 1; /* Ensure icon stays above the input */
+}
+
+/* For textarea, position the icon at the top */
+.input-with-icon.textarea-container .icon {
+  @apply top-3 transform-none;
+}
+
+@media (max-width: 640px) {
+  .input-with-icon input,
+  .input-with-icon textarea,
+  .input-with-icon select {
+    @apply pl-12; /* Slightly reduced padding on mobile */
+  }
+  
+  .input-with-icon::before {
+    width: 2.5rem; /* 40px - slightly narrower on mobile */
+  }
+  
+  .input-with-icon .icon {
+    @apply left-3; /* Adjusted position on mobile */
+    width: 1rem;
+    height: 1rem;
+  }
+  
+  /* Fix button text and icon alignment on mobile */
+  .btn-primary,
+  .btn-secondary,
+  .btn-danger,
+  .btn-success {
+    @apply flex items-center justify-center;
+  }
+}
+
+/* Add these responsive utility classes */
+@layer utilities {
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom, 0);
+  }
+  
+  .safe-top {
+    padding-top: env(safe-area-inset-top, 0);
+  }
+  
+  .mobile-p-4 {
+    @apply p-3 sm:p-4;
+  }
+  
+  .mobile-gap-2 {
+    @apply gap-1 sm:gap-2;
+  }
+  
+  .mobile-text-sm {
+    @apply text-xs sm:text-sm;
+  }
+}
+
+/* Ensure placeholder text is visible but distinct from input text */
+::placeholder {
+  @apply text-gray-400 dark:text-gray-500;
+  opacity: 1;
+}
+
+/* Fix button sizing on mobile */
+.btn-primary, .btn-secondary, .btn-danger, .btn-success {
+  @apply text-xs sm:text-sm px-2 sm:px-4 py-1.5 sm:py-2;
+}
+
+.btn-sm {
+  @apply text-xs px-2 py-1;
+}
+
+/* Make sure buttons don't overflow their containers */
+.button-wrap {
+  @apply flex flex-wrap;
+}
+
+/* Ensure action buttons don't overflow on mobile */
+.action-buttons {
+  @apply flex flex-wrap gap-1 sm:gap-2;
+}
+
+/* Enhanced dark mode for cards and containers */
+.card,
+.container,
+.dropdown-menu,
+.modal-content,
+.panel {
+  @apply bg-white dark:bg-gray-800 
+    text-gray-900 dark:text-gray-100
+    border-gray-200 dark:border-gray-700;
+}
+
+/* Fix for any white backgrounds that might appear in dark mode */
+.bg-white {
+  @apply dark:bg-gray-800;
+}
+
+/* Remove the problematic rules entirely and use a simpler approach */
+/* Ensure text is visible in dark mode */
+.dark {
+  --text-light: #f3f4f6;
+  --text-lighter: #e5e7eb;
+  --text-lightest: #ffffff;
+}
+
+/* Add a utility class for dark mode text */
+.dark-mode-visible {
+  @apply dark:text-gray-100;
+}
+
+/* Add smooth transition for dark mode changes */
+body, 
+.card, 
+.container, 
+.dropdown-menu, 
+.modal-content, 
+.panel,
+input,
+textarea,
+select,
+button {
+  @apply transition-colors duration-200;
+}
+
+/* Apply dark mode to html element for better inheritance */
+html.dark {
+  @apply bg-gray-900 text-gray-100;
+}
+
+/* Fix any remaining color inconsistencies */
+.dark .border-gray-200 {
+  @apply border-gray-700;
+}
+
+.dark .shadow-sm,
+.dark .shadow,
+.dark .shadow-md,
+.dark .shadow-lg {
+  --tw-shadow-color: rgba(0, 0, 0, 0.4);
+}
+
+/* Ensure all headings are visible in dark mode */
+.dark h1, 
+.dark h2, 
+.dark h3, 
+.dark h4, 
+.dark h5, 
+.dark h6 {
+  @apply text-white;
+}
+
+/* Consistent form label styling */
+.form-label,
+label {
+  @apply block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1;
+}
+
+/* Form group spacing */
+.form-group {
+  @apply mb-4;
+}
+
+/* Form validation styling */
+.form-input.error,
+.form-textarea.error,
+.form-select.error,
+input.error,
+textarea.error,
+select.error {
+  @apply border-red-500 dark:border-red-500
+    focus:ring-red-500 focus:border-red-500
+    dark:focus:ring-red-500 dark:focus:border-red-500;
+}
+
+.error-message {
+  @apply mt-1 text-sm text-red-600 dark:text-red-400;
+}
+
+.success-message {
+  @apply mt-1 text-sm text-green-600 dark:text-green-400;
+}
+
+/* Fix icons in cards and list items */
+.card-icon,
+.list-icon {
+  @apply flex-shrink-0 mr-3;
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+/* Ensure consistent spacing in list items with icons */
+.list-item-with-icon {
+  @apply flex items-start;
+}
+
+.list-item-with-icon .icon {
+  @apply flex-shrink-0 mr-3 mt-0.5;
+  width: 1rem;
+  height: 1rem;
+}
+
+/* Modern form styling */
+.modern-form-container {
+  @apply bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden;
+}
+
+.modern-form-header {
+  @apply border-b border-gray-200 dark:border-gray-700 p-6;
+}
+
+.modern-form-body {
+  @apply p-6;
+}
+
+.modern-form-footer {
+  @apply border-t border-gray-200 dark:border-gray-700 p-6 bg-gray-50 dark:bg-gray-800;
+}
+
+.modern-card {
+  @apply bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden transition-all hover:shadow-lg;
+}
+
+.modern-input {
+  @apply w-full rounded-lg px-4 py-3
+    bg-white dark:bg-gray-800 
+    text-gray-900 dark:text-gray-100
+    border border-gray-300 dark:border-gray-600
+    placeholder-gray-500 dark:placeholder-gray-400
+    focus:ring-2 focus:ring-primary-500 focus:border-primary-500 
+    dark:focus:ring-primary-400 dark:focus:border-primary-400
+    outline-none transition-all duration-200;
+}
+
+.modern-select-card {
+  @apply relative flex flex-col items-center p-5 rounded-xl border-2 transition-all cursor-pointer;
+}
+
+.modern-select-card-icon {
+  @apply rounded-full p-3 mb-3;
+}
+
+.modern-section {
+  @apply bg-gray-50 dark:bg-gray-700/30 p-5 rounded-xl;
+}
+
+/* Refined modern input field styling */
+.modern-input-field {
+  @apply relative overflow-hidden rounded-lg transition-all duration-200;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.modern-input-field:hover {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+}
+
+.modern-input-field:focus-within {
+  @apply ring-2 ring-primary-500 ring-opacity-50;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.modern-input-field input,
+.modern-input-field textarea,
+.modern-input-field select {
+  @apply w-full bg-white dark:bg-gray-800 border-0 rounded-lg px-4 py-3
+    text-gray-900 dark:text-gray-100
+    placeholder-gray-400 dark:placeholder-gray-500
+    focus:ring-0 focus:outline-none;
+}
+
+.modern-input-field.with-icon input,
+.modern-input-field.with-icon textarea,
+.modern-input-field.with-icon select {
+  @apply pl-12;
+}
+
+.modern-input-field .icon-container {
+  @apply absolute left-0 top-0 bottom-0 w-10 
+    bg-gray-50 dark:bg-gray-700 
+    flex items-center justify-center;
+  border-top-left-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+}
+
+.modern-input-field .icon {
+  @apply text-gray-400 dark:text-gray-500;
+  width: 1rem;
+  height: 1rem;
+}
+
+/* Textarea specific styling - more compact */
+.modern-input-field.textarea {
+  min-height: 90px;
+}
+
+.modern-input-field.textarea .icon-container {
+  height: 100%;
+}
+
+.modern-input-field.textarea textarea {
+  min-height: 90px;
+  padding-top: 0.75rem;
+  line-height: 1.5;
+  resize: none;
+}
+
+/* Trip details section styling */
+.trip-details-section {
+  @apply bg-gray-50 dark:bg-gray-700/30 p-5 rounded-lg;
+}
+
+/* Service selection cards */
+.service-selection-card {
+  @apply relative flex flex-col items-center p-4 rounded-lg border transition-all;
+}
+
+.service-selection-card .icon-circle {
+  @apply rounded-full p-2.5 mb-2;
+}
+
+.service-selection-card .icon {
+  @apply h-5 w-5;
+}
+
+/* Professional location input field */
+.location-input-field {
+  @apply relative overflow-hidden rounded-lg transition-all duration-200;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.location-input-field:hover {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+}
+
+.location-input-field:focus-within {
+  @apply ring-2 ring-primary-500 ring-opacity-50;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.location-input-field input {
+  @apply w-full bg-white dark:bg-gray-800 border-0 rounded-lg px-4 py-3 pl-12
+    text-gray-900 dark:text-gray-100
+    placeholder-gray-400 dark:placeholder-gray-500
+    focus:ring-0 focus:outline-none;
+}
+
+.location-icon-container {
+  @apply absolute left-0 top-0 bottom-0 w-10 
+    bg-gray-50 dark:bg-gray-700 
+    flex items-center justify-center;
+  border-top-left-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+}
+
+.location-icon {
+  @apply text-primary-500 dark:text-primary-400;
+  width: 1.125rem;
+  height: 1.125rem;
+}
+
+/* Notes input field styling */
+.notes-input-field {
+  @apply relative overflow-hidden rounded-lg transition-all duration-200;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  min-height: 90px;
+}
+
+.notes-input-field:hover {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+}
+
+.notes-input-field:focus-within {
+  @apply ring-2 ring-primary-500 ring-opacity-50;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.notes-input-field textarea {
+  @apply w-full bg-white dark:bg-gray-800 border-0 rounded-lg px-4 py-3 pl-12
+    text-gray-900 dark:text-gray-100
+    placeholder-gray-400 dark:placeholder-gray-500
+    focus:ring-0 focus:outline-none;
+  min-height: 90px;
+  padding-top: 0.75rem;
+  line-height: 1.5;
+  resize: none;
+}
+
+.notes-icon-container {
+  @apply absolute left-0 top-0 bottom-0 w-10 
+    bg-gray-50 dark:bg-gray-700 
+    flex items-center justify-center;
+  border-top-left-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+  height: 100%;
+}
+
+.notes-icon {
+  @apply text-gray-400 dark:text-gray-500;
+  width: 1.125rem;
+  height: 1.125rem;
+  margin-top: 0.75rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .location-input-field input,
+  .notes-input-field textarea {
+    @apply text-sm py-2.5;
+  }
+  
+  .location-icon,
+  .notes-icon {
+    width: 1rem;
+    height: 1rem;
+  }
+  
+  .notes-icon {
+    margin-top: 0.625rem;
+  }
+}
+
+/* Make sure buttons don't overflow their containers */
+.button-flex-wrap {
+  flex-wrap: wrap;
+}
+
+/* Fix for any dark text that might be hard to read in light mode */
+.dark .text-gray-300-custom {
+  color: #d1d5db !important;
+}
+
+.dark .text-gray-200-custom {
+  color: #e5e7eb !important;
+}
+
+.dark .text-gray-100-custom {
+  color: #f3f4f6 !important;
+} 
